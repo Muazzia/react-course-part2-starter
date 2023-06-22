@@ -3,7 +3,12 @@ import PostList from "./react-query/PostList";
 import TodoList from "./react-query/TodoList";
 
 function App() {
-  return <PostList />;
+  return (
+    <>
+      <PostList />
+      <TodoList />
+    </>
+  );
 }
 
 export default App;

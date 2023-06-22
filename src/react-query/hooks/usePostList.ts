@@ -11,7 +11,7 @@ interface Post {
 }
 
 const usePostList = () => {
-  return useData<Post>("Post", "/posts");
+  return useData<Post>("Post", "/posts", 5);
 };
 
 export default usePostList;
