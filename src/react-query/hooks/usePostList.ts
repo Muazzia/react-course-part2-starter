@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../apiCLient/apiClient";
 import axios from "axios";
+import useData from "./useData";
 
 interface Post {
   id: number;
@@ -10,15 +11,7 @@ interface Post {
 }
 
 const usePostList = () => {
-  const Fetch = () =>
-    axios
-      .get<Post[]>("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.data);
-
-  return useQuery({
-    queryKey: ["Post"],
-    queryFn: Fetch,
-  });
+  return useData<Post>("Post", "/posts");
 };
 
 export default usePostList;

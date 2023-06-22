@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import useData from "./useData";
 
 interface Todo {
   id: number;
@@ -9,15 +10,7 @@ interface Todo {
 }
 
 const useTodo = () => {
-  const FetchTodo = () =>
-    axios
-      .get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => res.data);
-
-  return useQuery<Todo[], Error>({
-    queryKey: ["todo"],
-    queryFn: FetchTodo,
-  });
+  return useData<Todo>("todo", "/todos");
 };
 
 export default useTodo;

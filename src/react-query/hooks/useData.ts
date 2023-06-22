@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import apiClient from "../apiCLient/apiClient";
 
-const useData = <T>(endpoint: string) => {
-  const FetchTodo = () => apiClient.get<T[]>(endpoint).then((res) => res.data);
+const useData = <T>(key: string, endpoint: string) => {
+  const Fetch = () => apiClient.get<T[]>(endpoint).then((res) => res.data);
 
   return useQuery<T[], Error>({
-    queryKey: ["todo"],
-    queryFn: FetchTodo,
+    queryKey: [key],
+    queryFn: Fetch,
   });
 };
 

@@ -1,11 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import usePostList from "./hooks/usePostList";
 
 const PostList = () => {
   const { data: posts, error } = usePostList();
 
-  // if (error) return <p>{error}</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <ul className="list-group">
