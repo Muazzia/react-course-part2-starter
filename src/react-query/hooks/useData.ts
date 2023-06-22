@@ -12,4 +12,5 @@ const useData = <T>(key: string, endpoint: string, stale = 1) => {
   });
 };
 
+
 export default useData;

@@ -1,7 +1,11 @@
 import usePostList from "./hooks/usePostList";
 
-const PostList = () => {
-  const { data: posts, error } = usePostList();
+interface Props {
+  userId: number | undefined;
+}
+
+const PostList = ({ userId }: Props) => {
+  const { data: posts, error } = usePostList(userId);
 
   if (error) return <p>{error.message}</p>;
 

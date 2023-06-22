@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../apiCLient/apiClient";
-import axios from "axios";
-import useData from "./useData";
 
 interface Post {
   id: number;
@@ -10,8 +8,22 @@ interface Post {
   userId: number;
 }
 
-const usePostList = () => {
-  return useData<Post>("Post", "/posts", 5);
+const usePostList = (id: number | undefined) => {
+  const Fetch = () =>
+    apiClient
+      .get<Post[]>("/posts", {
+        params: {
+          userId: id,
+        },
+      })
+      .then((res) => res.data);
+
+  return useQuery<Post[], Error>({
+    queryKey: ["users", id, "posts"],
+    queryFn: Fetch,
+  });
+
+  //   return useData<Post>("Post", id ? "/posts/" + id : "/posts", 5);
 };
 
 export default usePostList;
